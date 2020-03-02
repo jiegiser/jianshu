@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 11:00:34
+ * @LastEditTime: 2020-03-02 13:54:57
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -149,3 +149,4 @@ export const NavSearch = styled.input.attrs({
 `
 ```
 float触发了bfc
+项目中使用redux，react-redux进行管理数据；

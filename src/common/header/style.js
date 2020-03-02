@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 12:20:29
+ * @LastEditTime: 2020-03-02 13:47:00
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -52,19 +52,6 @@ export const NavItem = styled.div`
 export const SearchWrapper = styled.div`
   position: relative;
   float: left;
-  .slide-enter {
-    width: 160px;
-    transition: all .2s ease-out;
-  }
-  .slide-enter-active {
-    width: 240px;
-  }
-  .slide-exit {
-    transition: all .2s ease-out;
-  }
-  .slide-exit-active {
-    width: 160px;
-  }
 `
 export const Search = styled.i`
   position: absolute;
@@ -99,6 +86,19 @@ export const NavSearch = styled.input.attrs({
   }
   &.focused {
     width: 240px;
+  }
+  &.slide-enter {
+    width: 160px;
+    transition: all .2s ease-out;
+  }
+  &.slide-enter-active {
+    width: 240px;
+  }
+  &.slide-exit {
+    transition: all .2s ease-out;
+  }
+  &.slide-exit-active {
+    width: 160px;
   }
 `
 export const Addition = styled.div`
