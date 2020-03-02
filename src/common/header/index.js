@@ -3,11 +3,12 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 14:39:19
+ * @LastEditTime: 2020-03-02 15:11:59
  */
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import {
   HeaderWrapper,
   Logo,
@@ -65,16 +66,10 @@ const Header = props => {
  const mapDispatchToProps = dispatch => {
    return {
     handleInputFocus() {
-      const action = {
-        type: 'search_focus'
-      }
-      dispatch(action)
+      dispatch(actionCreators.searchFocus())
     },
     handleInputBlur() {
-      const action = {
-        type: 'search_blur'
-      }
-      dispatch(action)
+      dispatch(actionCreators.searchBlur())
     }
    }
  }
