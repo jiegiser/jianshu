@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 16:03:53
+ * @LastEditTime: 2020-03-02 16:35:22
  */
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
@@ -18,9 +18,34 @@ import {
   Addition,
   Button,
   SearchWrapper,
-  Search
+  Search,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwitch,
+  SearchInfoList,
+  SearchIfoItem
 } from './style'
-
+const getListArea = (show) => {
+  if (show) {
+    return (
+      <SearchInfo>
+        <SearchInfoTitle>
+          热门搜索
+          <SearchInfoSwitch>换一批</SearchInfoSwitch>
+        </SearchInfoTitle>
+        <SearchInfoList>
+          <SearchIfoItem>教育</SearchIfoItem>
+          <SearchIfoItem>生活</SearchIfoItem>
+          <SearchIfoItem>前端</SearchIfoItem>
+          <SearchIfoItem>python</SearchIfoItem>
+          <SearchIfoItem>java</SearchIfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    )
+  } else {
+    return null
+  }
+}
 const Header = props => {
   return (
     <HeaderWrapper>
@@ -45,6 +70,7 @@ const Header = props => {
             ></NavSearch>
           </CSSTransition>
           <Search className = { props.focused ? 'focused iconfont' : 'iconfont' }>&#xe624;</Search>
+          { getListArea(props.focused) }
         </SearchWrapper>
       </Nav>
       <Addition>

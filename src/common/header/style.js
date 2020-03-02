@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 13:47:00
+ * @LastEditTime: 2020-03-02 16:32:03
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -101,6 +101,40 @@ export const NavSearch = styled.input.attrs({
     width: 160px;
   }
 `
+export const SearchInfo = styled.div`
+  position: absolute;
+  left: 0;
+  top: 56px;
+  width: 240px;
+  padding: 0 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2)
+`
+export const SearchIfoItem = styled.a`
+  display: block;
+  float: left;
+  line-height: 20px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  padding: 0 5px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  color: #787878;
+  border-radius: 3px;
+`
+export const SearchInfoList = styled.div`
+  overflow: hidden;
+`
+export const SearchInfoTitle = styled.div`
+  margin-top: 20px;
+  margin-bottom: 15px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #969696;
+`
+export const SearchInfoSwitch = styled.span`
+  float: right;
+  font-size: 13px;
+`
 export const Addition = styled.div`
   position: absolute;
   right: 0;
@@ -124,3 +158,4 @@ export const Button = styled.div`
     background: #ec6149;
   }
 `
+

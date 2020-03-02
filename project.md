@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 15:58:10
+ * @LastEditTime: 2020-03-02 16:08:42
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -202,5 +202,21 @@ export default (state = defaultState, action) => {
 获取数据的方式不一致，我们可以将state整个变成一个immutable对象，这样获取数据的方式就统一起来了、我们可以借助redux-immutable库。
 首先进行安装：yarn add redux-immutable;使用：
 ```js
-
+import { combineReducers } from 'redux-immutable'
+import { reducer as headerReducer } from '../common/header/store'
+// 合并reducer--生成的数据内容就是immutable对象
+const reducer = combineReducers({
+  header: headerReducer
+})
+export default reducer
+```
+然后在获取数据的时候：
+```js
+ const mapStateToProps = state => {
+   return {
+     focused: state.getIn(['header', 'focused'])
+    //  下面的方式也是可以的
+    //  focused: state.get('header').get('focused')
+   }
+ }
 ```
