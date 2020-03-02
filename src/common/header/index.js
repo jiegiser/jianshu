@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 14:17:06
+ * @LastEditTime: 2020-03-02 14:39:19
  */
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
@@ -59,7 +59,7 @@ const Header = props => {
 
  const mapStateToProps = state => {
    return {
-     focused: state.focused
+     focused: state.header.focused
    }
  }
  const mapDispatchToProps = dispatch => {

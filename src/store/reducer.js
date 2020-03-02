@@ -3,22 +3,12 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 13:57:00
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 14:14:21
+ * @LastEditTime: 2020-03-02 14:47:57
  */
-const defaultState = {
-  focused: false
-}
-
-export default (state = defaultState, action) => {
-  if (action.type === 'search_focus') {
-    return {
-      focused: true
-    }
-  }
-  if (action.type === 'search_blur') {
-    return {
-      focused: false
-    }
-  }
-  return state
-}
+import { combineReducers } from 'redux'
+import { reducer as headerReducer } from '../common/header/store'
+// 合并reducer
+const reducer =  combineReducers({
+  header: headerReducer
+})
+export default reducer
