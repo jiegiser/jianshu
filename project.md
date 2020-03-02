@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 13:54:57
+ * @LastEditTime: 2020-03-02 15:58:10
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -148,5 +148,59 @@ export const NavSearch = styled.input.attrs({
   font-size: 15px;
 `
 ```
-float触发了bfc
-项目中使用redux，react-redux进行管理数据；
+float触发了bfc。
+## combineReducers合并reducer
+项目中使用redux，react-redux进行管理数据；使用combineReducers函数进行合并不同的reducer。
+```js
+import { combineReducers } from 'redux'
+import { reducer as headerReducer } from '../common/header/store'
+// 合并reducer
+const reducer = combineReducers({
+  header: headerReducer
+})
+export default reducer
+```
+然后我们在项目中使用的时候，需要添加一个header前缀：
+```js
+ const mapStateToProps = state => {
+   return {
+     focused: state.header.focused
+   }
+ }
+```
+## 使用immutable.js库
+我们在reducer中不能修改store中的状态。我们可以使用immutable.js库，会生成immutable对象，是不可修改的。
+首先安装：yarn add immutable；使用：
+```js
+import * as constants from './constants.js'
+import { fromJS } from 'immutable'
+const defaultState = fromJS({
+  focused: false
+})
+  
+export default (state = defaultState, action) => {
+  if (action.type === constants.SEARCH_FOCUS) {
+    // immutable对象的set方法会结合之前immutable对象的值
+    // 和设置的值，返回一个全新的对象
+    return state.set('focused', true)
+  }
+  if (action.type === constants.SEARCH_BLUR) {
+    return state.set('focused', false)
+  }
+  return state
+}
+```
+在读取数据的时候，也是需要使用get来获取到数据：
+```js
+ const mapStateToProps = state => {
+   return {
+     focused: state.header.get('focused')
+   }
+ }
+```
+我们在获取值得时候state.header.get('focused')这样的方式进行获取，前面state是一个对象，后面又是以immutable对象的方式获取数据，这样
+获取数据的方式不一致，我们可以将state整个变成一个immutable对象，这样获取数据的方式就统一起来了、我们可以借助redux-immutable库。
+首先进行安装：yarn add redux-immutable;使用：
+```js
+
+```
