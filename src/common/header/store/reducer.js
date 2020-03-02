@@ -3,12 +3,13 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 14:31:14
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 15:41:12
+ * @LastEditTime: 2020-03-02 17:32:33
  */
 import * as constants from './constants.js'
 import { fromJS } from 'immutable'
 const defaultState = fromJS({
-  focused: false
+  focused: false,
+  list:[]
 })
   
 export default (state = defaultState, action) => {
@@ -19,6 +20,9 @@ export default (state = defaultState, action) => {
   }
   if (action.type === constants.SEARCH_BLUR) {
     return state.set('focused', false)
+  }
+  if (action.type === constants.CHANGE_LIST) {
+    return state.set('list', action.data)
   }
   return state
 }

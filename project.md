@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 16:08:42
+ * @LastEditTime: 2020-03-02 18:11:27
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -219,4 +219,21 @@ export default reducer
     //  focused: state.get('header').get('focused')
    }
  }
+```
+这里需要注意的是，如果我们使用了fromJS方法去将我们的对象变成immutable对象的时候，对象里面的数组也会变成immutable类型，如果直接改变数组的类型，会从immutable类型转换为普通的数据类型。所以在修改数组类型的时候，设置的数据类型也应该是immutable类型：
+```js
+export const getList = () => {
+  return (dispatch) => {
+    axios.get('/api/headerList.json').then(res => {
+      const data = res.data
+      dispatch(changeList(data.data))
+    }).catch(e => {
+      console.log(e)
+    })
+  }
+}
+// 然后在reducer中进行修改数据
+  if (action.type === constants.CHANGE_LIST) {
+    return state.set('list', action.data)
+  }
 ```
