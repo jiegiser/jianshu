@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 18:13:06
+ * @LastEditTime: 2020-03-02 20:45:56
  */
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
@@ -27,19 +27,31 @@ import {
 } from './style'
 class Header extends Component {
   getListArea(show) {
-    if (this.props.focused) {
+    const { list, mouseIn, focused, page, totalPage, handleChangePage, handleMouseEnter, handleMouseLeave } = this.props
+    // 将immutable类型的数据不能通过[]的方式获取数据，所以需要转换为普通的数组
+    const newList = list.toJS()
+    const pageList = []
+    if (newList.length) {
+      for (let i = (page - 1) * 10; i < page * 10; i++) {
+        if (newList[i]) {
+          pageList.push(
+            <SearchIfoItem key={ newList[i] }>{ newList[i] }</SearchIfoItem>
+          )
+        }
+      }
+    }
+    if (focused || mouseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo
+          onMouseEnter = { handleMouseEnter }
+          onMouseLeave = { handleMouseLeave }
+        >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch onClick={ () => handleChangePage(page, totalPage) }>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              this.props.list.map(item => {
-                return <SearchIfoItem key={ item }>{ item }</SearchIfoItem>
-              })
-            }
+            { pageList }
           </SearchInfoList>
         </SearchInfo>
       )
@@ -48,6 +60,7 @@ class Header extends Component {
     }
   }
   render() {
+    const { focused, handleInputFocus, handleInputBlur } = this.props
     return (
       <HeaderWrapper>
         <Logo/>
@@ -60,17 +73,17 @@ class Header extends Component {
            </NavItem>
           <SearchWrapper>
             <CSSTransition
-              in = { this.props.focused }
+              in = { focused }
               timeout = { 200 }
               classNames = "slide"
             >
               <NavSearch
-                className = { this.props.focused ? 'focused' : '' }
-                onFocus = { this.props.handleInputFocus }
-                onBlur = { this.props.handleInputBlur }
+                className = { focused ? 'focused' : '' }
+                onFocus = { handleInputFocus }
+                onBlur = { handleInputBlur }
               ></NavSearch>
             </CSSTransition>
-            <Search className = { this.props.focused ? 'focused iconfont' : 'iconfont' }>&#xe624;</Search>
+            <Search className = { focused ? 'focused iconfont' : 'iconfont' }>&#xe624;</Search>
             { this.getListArea() }
           </SearchWrapper>
         </Nav>
@@ -88,7 +101,10 @@ class Header extends Component {
  const mapStateToProps = state => {
    return {
      focused: state.getIn(['header', 'focused']),
-     list: state.getIn(['header', 'list'])
+     list: state.getIn(['header', 'list']),
+     page: state.getIn(['header', 'page']),
+     mouseIn: state.getIn(['header', 'mouseIn']),
+     totalPage: state.getIn(['header', 'totalPage'])
     //  focused: state.get('header').get('focused')
    }
  }
@@ -100,6 +116,19 @@ class Header extends Component {
     },
     handleInputBlur() {
       dispatch(actionCreators.searchBlur())
+    },
+    handleMouseEnter() {
+      dispatch(actionCreators.mouseEnter())
+    },
+    handleMouseLeave() {
+      dispatch(actionCreators.mouseLeave())
+    },
+    handleChangePage(page, totalPage) {
+      if (page < totalPage) {
+        dispatch(actionCreators.changePage(page + 1))
+      } else {
+        dispatch(actionCreators.changePage(1))
+      }
     }
    }
  }

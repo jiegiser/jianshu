@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 18:11:27
+ * @LastEditTime: 2020-03-02 20:43:43
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -186,6 +186,14 @@ export default (state = defaultState, action) => {
   }
   if (action.type === constants.SEARCH_BLUR) {
     return state.set('focused', false)
+  }
+  if (action.type === constants.CHANGE_LIST) {
+    // return state.set('list', action.data).set('totalPage', action.totalPage)
+    // 可以这样写
+    return state.merge({
+      list: action.data,
+      totalPage: action.totalPage
+    })
   }
   return state
 }
