@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 10:09:25
+ * @LastEditTime: 2020-03-02 11:00:34
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -148,3 +148,4 @@ export const NavSearch = styled.input.attrs({
   font-size: 15px;
 `
 ```
+float触发了bfc
