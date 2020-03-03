@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 20:43:43
+ * @LastEditTime: 2020-03-03 08:41:37
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -245,3 +245,32 @@ export const getList = () => {
     return state.set('list', action.data)
   }
 ```
+我们在使用ref的时候需要注意的是，ref是一个函数：spinIcon就是这个span的dom元素了。
+```js
+  <span
+    ref = { icon => { this.spinIcon = icon } }
+    className="iconfont spin"
+  >
+    &#xe851;
+  </span>
+```
+## css 相关
+我们如果想要点击某个按钮，让他的图标进行旋转：
+```css
+/* 首先定义图标的样式 */
+  .spin {
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 2px;
+    transition: all .2s ease-in;
+    transform-origin: center center;
+  }
+```
+然后通过js获取到该元素的dom进行修改transition:
+```js
+  let originAngle = Number(spin.style.transform.replace(/[^0-9]/ig, ''))
+  spin.style.transform = `rotate(${originAngle + 360}deg)`
+```
+
+## React 中的路由

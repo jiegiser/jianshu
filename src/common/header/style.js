@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-03 07:58:22
+ * @LastEditTime: 2020-03-03 08:33:54
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -120,6 +120,7 @@ export const SearchIfoItem = styled.a`
   border: 1px solid #ddd;
   color: #787878;
   border-radius: 3px;
+  cursor: pointer;
 `
 export const SearchInfoList = styled.div`
   overflow: hidden;
@@ -134,6 +135,7 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   float: right;
   font-size: 13px;
+  cursor: pointer;
   .spin {
     display: block;
     float: left;
