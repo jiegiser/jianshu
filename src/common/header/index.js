@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 20:45:56
+ * @LastEditTime: 2020-03-03 08:06:26
  */
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
@@ -48,7 +48,17 @@ class Header extends Component {
         >
           <SearchInfoTitle>
             热门搜索
-            <SearchInfoSwitch onClick={ () => handleChangePage(page, totalPage) }>换一批</SearchInfoSwitch>
+            <SearchInfoSwitch
+              onClick={ () => handleChangePage(page, totalPage, this.spinIcon) }
+            >
+              <span
+                ref = { icon => { this.spinIcon = icon } }
+                className="iconfont spin"
+              >
+                &#xe851;
+              </span>
+              换一批
+            </SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
             { pageList }
@@ -123,7 +133,9 @@ class Header extends Component {
     handleMouseLeave() {
       dispatch(actionCreators.mouseLeave())
     },
-    handleChangePage(page, totalPage) {
+    handleChangePage(page, totalPage, spin) {
+      let originAngle = Number(spin.style.transform.replace(/[^0-9]/ig, ''))
+      spin.style.transform = `rotate(${originAngle + 360}deg)`
       if (page < totalPage) {
         dispatch(actionCreators.changePage(page + 1))
       } else {

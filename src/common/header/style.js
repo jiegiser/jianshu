@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-02 16:32:03
+ * @LastEditTime: 2020-03-03 07:58:22
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -134,6 +134,14 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
   float: right;
   font-size: 13px;
+  .spin {
+    display: block;
+    float: left;
+    font-size: 12px;
+    margin-right: 2px;
+    transition: all .2s ease-in;
+    transform-origin: center center;
+  }
 `
 export const Addition = styled.div`
   position: absolute;
