@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-03 08:41:37
+ * @LastEditTime: 2020-03-03 09:02:04
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -274,3 +274,29 @@ export const getList = () => {
 ```
 
 ## React 中的路由
+
+首先需要进行安装：yarn add react-router-dom，然后在根组件中进行使用：
+```js
+import React, { Fragment } from 'react'
+import { Globalstyle } from './style'
+import { Globaliconfont } from './statics/iconfont/iconfont'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Header from './common/header/index'
+import store from './store/index'
+import { Provider } from 'react-redux'
+function App() {
+  return (
+    <Fragment>
+      <BrowserRouter>
+        <div>
+          // exact 参数是代表当访问的的地址跟path一直的时候进行显示，比如下面的两个path，如果不进行设置在/detail路径下/里面的内容也会显示
+          <Route path = '/' exact render = { () => <div>home</div> }></Route>
+          <Route path = '/detail' exact render = { () => <div>detail</div> }></Route>
+        </div>
+      </BrowserRouter>
+    </Fragment>
+  )
+}
+
+export default App
+```
