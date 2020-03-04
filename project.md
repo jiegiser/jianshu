@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-03 09:02:04
+ * @LastEditTime: 2020-03-04 08:02:34
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -294,6 +294,30 @@ function App() {
           <Route path = '/detail' exact render = { () => <div>detail</div> }></Route>
         </div>
       </BrowserRouter>
+    </Fragment>
+  )
+}
+
+export default App
+```
+如果我们想在对象的路由直接渲染我们的组件：
+```js
+import Home from './pages/home/index'
+import Detail from './pages/detail'
+function App() {
+  return (
+    <Fragment>
+    {/* 将store数据提供给内部组件 */}
+      <Provider store = { store }>
+        <div>
+          <BrowserRouter>
+            <div>
+              <Route path = '/' exact component = { Home }></Route>
+              <Route path = '/detail' exact component = { Detail }></Route>
+            </div>
+          </BrowserRouter>
+        </div>
+      </Provider>
     </Fragment>
   )
 }

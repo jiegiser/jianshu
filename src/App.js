@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 07:49:57
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-03 08:55:19
+ * @LastEditTime: 2020-03-04 08:02:15
  */
 import React, { Fragment } from 'react'
 import { Globalstyle } from './style'
@@ -12,6 +12,8 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Header from './common/header/index'
 import store from './store/index'
 import { Provider } from 'react-redux'
+import Home from './pages/home/index'
+import Detail from './pages/detail'
 function App() {
   return (
     <Fragment>
@@ -23,8 +25,8 @@ function App() {
           <Header></Header>
           <BrowserRouter>
             <div>
-              <Route path = '/' exact render = { () => <div>home</div> }></Route>
-              <Route path = '/detail' exact render = { () => <div>detail</div> }></Route>
+              <Route path = '/' exact component = { Home }></Route>
+              <Route path = '/detail' exact component = { Detail }></Route>
             </div>
           </BrowserRouter>
         </div>
