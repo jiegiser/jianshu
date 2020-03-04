@@ -3,18 +3,40 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:16:02
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 08:17:36
+ * @LastEditTime: 2020-03-04 18:37:04
  */
 import React, { Component } from 'react'
-
+import { connect } from 'react-redux'
+import {
+  ListItem,
+  ListInfo
+} from '../style'
 class List extends Component {
   render() {
+    const { list } = this.props
     return (
       <div>
-        Detail
+        {
+          list.map(item => {
+            return (
+              <ListItem key={item.get('id')}>
+                <img className="pic" src={item.get('imgUrl')} alt="" />
+                <ListInfo>
+                  <h3 className="title">{item.get('title')}</h3>
+                  <p className="desc">{item.get('desc')}</p>
+                </ListInfo>
+              </ListItem>
+            )
+          })
+        }
       </div>
     )
   }
 }
-
-export default List
+const mapState = state => {
+  return {
+    // list: state.get('home').get('articleList')
+    list: state.getIn(['home', 'articleList'])
+  }
+}
+export default connect(mapState, null)(List)

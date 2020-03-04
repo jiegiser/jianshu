@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-03 08:33:54
+ * @LastEditTime: 2020-03-04 18:38:09
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -107,7 +107,8 @@ export const SearchInfo = styled.div`
   top: 56px;
   width: 240px;
   padding: 0 20px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, .2)
+  box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+  background: #fff;
 `
 export const SearchIfoItem = styled.a`
   display: block;

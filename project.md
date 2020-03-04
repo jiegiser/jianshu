@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 08:02:34
+ * @LastEditTime: 2020-03-04 18:19:54
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -149,6 +149,8 @@ export const NavSearch = styled.input.attrs({
 `
 ```
 float触发了bfc。
+一般我们设置了子元素的浮动，可以设置父元素overflow为hidden，这样可以撑开父元素。
+
 ## combineReducers合并reducer
 项目中使用redux，react-redux进行管理数据；使用combineReducers函数进行合并不同的reducer。
 ```js
@@ -168,6 +170,7 @@ export default reducer
    }
  }
 ```
+
 ## 使用immutable.js库
 我们在reducer中不能修改store中的状态。我们可以使用immutable.js库，会生成immutable对象，是不可修改的。
 首先安装：yarn add immutable；使用：
