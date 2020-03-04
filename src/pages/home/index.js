@@ -3,15 +3,15 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 07:55:58
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 19:20:50
+ * @LastEditTime: 2020-03-04 19:34:40
  */
 import React, { Component } from 'react'
 import Topic from './components/Topic'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
 import List from './components/List'
-import axios from 'axios'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import {
   HomeWrapper,
   HomeLeft,
@@ -34,24 +34,13 @@ class Home extends Component {
     )
   }
   componentDidMount() {
-    const { changeHomeData } = this.props
-    axios.get('/api/home.json').then(res => {
-      const result = res.data.data
-      const action = {
-        type: 'change_home_data',
-        topicList: result.topicList,
-        articleList: result.articleList,
-        recommendList: result.recommendList
-      }
-      changeHomeData(action)
-    }).catch(e => {
-      console.log(e)
-    })
+    this.props.changeHomeData()
   }
 }
 const mapDispatch = dispatch => {
   return {
-    changeHomeData(action) {
+    changeHomeData() {
+      const action = actionCreators.getHomeInfo()
       dispatch(action)
     }
   }
