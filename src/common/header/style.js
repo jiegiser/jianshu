@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 18:38:09
+ * @LastEditTime: 2020-03-04 18:48:11
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'

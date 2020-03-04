@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:02:51
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 18:25:29
+ * @LastEditTime: 2020-03-04 19:02:21
  */
 import styled from 'styled-components'
 export const HomeWrapper = styled.div`
@@ -22,7 +22,7 @@ export const HomeLeft = styled.div`
   }
 `
 export const HomeRight = styled.div`
-  width: 240px;
+  width: 280px;
   float: right;
 `
 export const TopicWrapper = styled.div`
@@ -77,4 +77,22 @@ export const ListInfo = styled.div`
     font-size: 13px;
     color: #999;
   }
+`
+export const RecommendWrapper = styled.div`
+  margin: 30px 0;
+  width: 280px;
+`
+export const RecommendItem = styled.div`
+  width: 280px;
+  height: 50px;
+  background: url(${(props) => props.imgUrl});
+  background-size: contain;
+`
+export const WriterWrapper = styled.div`
+  width: 278px;
+  height: 300px;
+  line-height: 300px;
+  border: 1px solid #dcdcdc;
+  border-radius: 3px;
+  text-align: center;
 `
