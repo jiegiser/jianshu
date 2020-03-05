@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 08:32:28
+ * @LastEditTime: 2020-03-05 09:15:12
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -126,6 +126,10 @@ export const RecommendItem = styled.div`
   background: url(${(props) => props.imgUrl});
   background-size: contain;
 `
+```
+类似Vue的v-html：
+```js
+<Content dangerouslySetInnerHTML = {{__html: content}} />
 ```
 
 
