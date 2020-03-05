@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:02:51
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 20:21:46
+ * @LastEditTime: 2020-03-05 15:17:06
  */
 import styled from 'styled-components'
 export const HomeWrapper = styled.div`
@@ -89,12 +89,11 @@ export const RecommendItem = styled.div`
   background-size: contain;
 `
 export const WriterWrapper = styled.div`
+  position: relative;
   width: 278px;
   height: 300px;
-  line-height: 300px;
-  border: 1px solid #dcdcdc;
+  ${'' /* border: 1px solid #dcdcdc; */}
   border-radius: 3px;
-  text-align: center;
 `
 export const LoadMore = styled.div`
   width: 100%;
@@ -117,4 +116,95 @@ export const BackTop = styled.div`
   text-align: center;
   border: 1px solid #ccc;
   font-size: 14px;
+`
+export const DownloadWrapper = styled.div`
+  margin-bottom: 30px;
+  padding: 10px 22px;
+  width: 83%;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  background-color: #fff;
+  position: relative;
+  img {
+    width: 60px;
+    height: 60px;
+    opacity: .85;
+  }
+`
+export const DowmloadDesc = styled.div`
+  display: inline-block;
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 20px;
+  box-sizing: border-box;
+  .up {
+    font-size: 15px;
+    color: #333;
+  }
+  .down {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #999;
+  }
+`
+export const WriterHot = styled.div`
+  width: 100%;
+  overflow: hidden;
+  text-align: left;
+  font-size: 14px;
+  color: #969696;
+`
+export const WriterSwitch = styled.div`
+  float: right;
+  olor: #787878;
+`
+export const WriterItem = styled.div`
+  width: 100%;
+  margin: 15px 0px;
+  overflow: hidden;
+  img {
+    float: left;
+    display: block;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin-right: 10px;
+  }
+`
+export const WriterItemRight = styled.div`
+  padding-left: 76px;
+  .title {
+    padding-top: 5px;
+    margin-right: 60px;
+    font-size: 14px;
+    color: #333;
+  }
+  .desc {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #969696;
+  }
+`
+export const WriteStar = styled.div`
+  float: right;
+  margin-top: 5px;
+  padding: 0;
+  font-size: 13px;
+  color: #42c02e;
+  font-weight: 400;
+  line-height: normal;
+`
+export const WriterMore = styled.div`
+  width: 93%;
+  text-align: center;
+  position: absolute;
+  padding: 7px 7px 7px 12px;
+  left: 0;
+  font-size: 13px;
+  color: #787878;
+  background-color: #f7f7f7;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  cursor: pointer;
 `

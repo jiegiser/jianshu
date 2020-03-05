@@ -3,13 +3,14 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 07:55:58
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 08:11:08
+ * @LastEditTime: 2020-03-05 14:10:20
  */
 import React, { PureComponent } from 'react'
 import Topic from './components/Topic'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
 import List from './components/List'
+import Download  from './components/Download'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
 import {
@@ -34,6 +35,7 @@ class Home extends PureComponent {
         </HomeLeft>
         <HomeRight>
           <Recommend />
+          <Download />
           <Writer />
         </HomeRight>
         { this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null }
