@@ -3,13 +3,13 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:16:33
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 19:00:32
+ * @LastEditTime: 2020-03-05 08:14:07
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
   WriterWrapper
 } from '../style'
-class Writer extends Component {
+class Writer extends PureComponent {
   render() {
     return (
       <WriterWrapper>

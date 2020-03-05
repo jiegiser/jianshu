@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 18:48:11
+ * @LastEditTime: 2020-03-05 08:23:49
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
@@ -13,9 +13,7 @@ export const HeaderWrapper = styled.div`
   height: 56px;
   border-bottom: 1px solid #f0f0f0;
 `
-export const Logo = styled.a.attrs({
-  href: '/'
-})`
+export const Logo = styled.div`
   position: absolute;
   top: 0;
   left: 0;

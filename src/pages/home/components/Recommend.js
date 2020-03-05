@@ -3,15 +3,15 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:16:20
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 18:58:07
+ * @LastEditTime: 2020-03-05 08:13:50
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import {
   RecommendWrapper,
   RecommendItem
 } from '../style'
-class Recommend extends Component {
+class Recommend extends PureComponent {
   render() {
     const { list } = this.props
     return (

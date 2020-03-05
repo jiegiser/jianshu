@@ -3,9 +3,9 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 07:55:58
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 19:34:40
+ * @LastEditTime: 2020-03-05 08:11:08
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Topic from './components/Topic'
 import Recommend from './components/Recommend'
 import Writer from './components/Writer'
@@ -15,9 +15,15 @@ import { actionCreators } from './store'
 import {
   HomeWrapper,
   HomeLeft,
-  HomeRight
+  HomeRight,
+  BackTop
 } from './style'
-class Home extends Component {
+// PureComponent自己做了shouldComponentUpdate的优化，提高性能
+class Home extends PureComponent {
+  handleScrollTop() {
+    // 左侧0 底部0
+    window.scrollTo(0, 0)
+  }
   render() {
     return (
       <HomeWrapper>
@@ -30,19 +36,39 @@ class Home extends Component {
           <Recommend />
           <Writer />
         </HomeRight>
+        { this.props.showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : null }
       </HomeWrapper>
     )
   }
   componentDidMount() {
     this.props.changeHomeData()
+    this.bindEvents()
+  }
+  // 在组件从 DOM 中移除之前立刻被调用， 组件销毁的时候也要将windows绑定的全局的事件去掉
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollTopShow)
+  }
+  bindEvents() {
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
+  }
+}
+const mapState = state => {
+  return {
+    showScroll: state.getIn(['home', 'showScroll'])
   }
 }
 const mapDispatch = dispatch => {
   return {
     changeHomeData() {
-      const action = actionCreators.getHomeInfo()
-      dispatch(action)
+      dispatch(actionCreators.getHomeInfo())
+    },
+    changeScrollTopShow() {
+      if (document.documentElement.scrollTop > 200) {
+        dispatch(actionCreators.toggleTopShow(true))
+      } else {
+        dispatch(actionCreators.toggleTopShow(false))
+      }
     }
   }
 }
-export default connect(null, mapDispatch)(Home)
+export default connect(mapState, mapDispatch)(Home)

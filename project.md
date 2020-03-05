@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 18:19:54
+ * @LastEditTime: 2020-03-05 08:32:28
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -116,6 +116,18 @@ export const Logo = styled.a.attrs({
   background-size: contain;
 `
 ```
+可以在组件中传递参数到样式文件中：
+```js
+<RecommendItem imgUrl={item.get('imgUrl')}></RecommendItem>
+// 样式文件中接收
+export const RecommendItem = styled.div`
+  width: 280px;
+  height: 50px;
+  background: url(${(props) => props.imgUrl});
+  background-size: contain;
+`
+```
+
 
 ## css相关
 一般我们进行定位的时候，将子元素定位在父元素中一定的位置。首先应该将父元素的position设置为相对定位（relative），然后进行设置子元素的position为absolute，然后进行设置top，left等等。如果子元素为内敛元素需要设置display为block然后设置宽高。
@@ -327,3 +339,72 @@ function App() {
 
 export default App
 ```
+我们在Windows绑定的全局的事件需要在组件要被销毁的时候进行移除：
+```js
+  componentDidMount() {
+    this.props.changeHomeData()
+    this.bindEvents()
+  }
+  // 在组件从 DOM 中移除之前立刻被调用， 组件销毁的时候也要将windows绑定的全局的事件去掉
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollTopShow)
+  }
+  bindEvents() {
+    window.addEventListener('scroll', this.props.changeScrollTopShow)
+  }
+```
+在react中如果使用a标点做页面切换，会导致重新加载整个页面。可以使用react-router-dom
+提供的Link组件来实现。
+```js
+import { Link } from 'react-router-dom'
+return (
+  <Link key={index} to='/detail'>
+  </Link>
+)
+```
+需要注意的是这个理由跳转的组件需要放在根组件中BrowserRouter之中：
+```js
+import React, { Fragment } from 'react'
+import { Globalstyle } from './style'
+import { Globaliconfont } from './statics/iconfont/iconfont'
+import { BrowserRouter, Route } from 'react-router-dom'
+import Header from './common/header/index'
+import store from './store/index'
+import { Provider } from 'react-redux'
+import Home from './pages/home/index'
+import Detail from './pages/detail'
+function App() {
+  return (
+    <Fragment>
+    {/* 将store数据提供给内部组件 */}
+      <Provider store = { store }>
+        <Globalstyle/>
+        <Globaliconfont />
+        <BrowserRouter>
+          <div>
+            {
+              // 这个组件我们使用了Link组件进行跳转，需要放在BrowserRouter组件中
+            }
+            <Header />
+            <Route path = '/' exact component = { Home }></Route>
+            <Route path = '/detail' exact component = { Detail }></Route>
+          </div>
+        </BrowserRouter>
+      </Provider>
+    </Fragment>
+  )
+}
+
+export default App
+```
+
+## 项目中性能的优化
+- 使用无状态组件
+- 使用PureComponent组件
+使用PureComponent需要结合数据框架immutable.js来实现。
+```js
+import React, { PureComponent } from 'react'
+// PureComponent自己做了shouldComponentUpdate的优化，提高性能
+class Home extends PureComponent {}
+```
+

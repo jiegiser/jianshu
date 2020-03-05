@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 07:49:57
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-04 08:02:15
+ * @LastEditTime: 2020-03-05 08:27:10
  */
 import React, { Fragment } from 'react'
 import { Globalstyle } from './style'
@@ -19,17 +19,15 @@ function App() {
     <Fragment>
     {/* 将store数据提供给内部组件 */}
       <Provider store = { store }>
-        <div>
-          <Globalstyle/>
-          <Globaliconfont />
-          <Header></Header>
-          <BrowserRouter>
-            <div>
-              <Route path = '/' exact component = { Home }></Route>
-              <Route path = '/detail' exact component = { Detail }></Route>
-            </div>
-          </BrowserRouter>
-        </div>
+        <Globalstyle/>
+        <Globaliconfont />
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Route path = '/' exact component = { Home }></Route>
+            <Route path = '/detail' exact component = { Detail }></Route>
+          </div>
+        </BrowserRouter>
       </Provider>
     </Fragment>
   )
