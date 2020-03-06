@@ -3,12 +3,13 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:46:22
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 08:23:49
+ * @LastEditTime: 2020-03-06 08:45:35
  */
 import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
 
 export const HeaderWrapper = styled.div`
+  z-index: 1;
   position: relative;
   height: 56px;
   border-bottom: 1px solid #f0f0f0;

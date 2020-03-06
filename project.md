@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 09:15:12
+ * @LastEditTime: 2020-03-06 08:34:03
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -400,6 +400,32 @@ function App() {
 }
 
 export default App
+```
+
+动态路由获取参数：
+```js
+// 首先在根路径设置匹配的模式：/detail/:id也就是匹配后面的id
+<BrowserRouter>
+  <div>
+    <Header />
+    <Route path = '/detail/:id' exact component = { Detail }></Route>
+  </div>
+</BrowserRouter>
+```
+然后在detail组件中可以接收到id：
+```js
+this.props.match.params.id
+```
+另一种方式是不修改根组件的路由：
+```js
+  <div>
+    <Header />
+    <Route path = '/detail' exact component = { Detail }></Route>
+  </div>
+```
+然后在detail组件中可以接收到id：去解析。这样比较麻烦
+```js
+this.props.location.search
 ```
 
 ## 项目中性能的优化

@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 08:16:02
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 08:21:31
+ * @LastEditTime: 2020-03-06 08:34:32
  */
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
@@ -22,7 +22,7 @@ class List extends PureComponent {
         {
           list.map((item, index) => {
             return (
-              <Link key={index} to='/detail'>
+              <Link key={index} to={'/detail/' + item.get('id')}>
                 <ListItem>
                   <img className="pic" src={item.get('imgUrl')} alt="" />
                   <ListInfo>

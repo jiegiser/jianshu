@@ -3,16 +3,17 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 07:57:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 09:14:15
+ * @LastEditTime: 2020-03-06 08:38:53
  */
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { actionCreators } from './store/index'
 import {
   DetailWrapper,
   Header,
   Content
 } from './style'
-class Detail extends Component {
+class Detail extends PureComponent {
   render() {
     const { title, content } = this.props
     return (
@@ -22,6 +23,10 @@ class Detail extends Component {
       </DetailWrapper>
     )
   }
+  componentDidMount() {
+    const { match }  = this.props
+    this.props.getDetail(match.params.id)
+  }
 }
 const mapState = state => {
   return {
@@ -29,4 +34,11 @@ const mapState = state => {
     content: state.getIn(['detail', 'content'])
   }
 }
-export default connect(mapState, null)(Detail)
+const mapDispatch = dispatch => {
+  return {
+    getDetail(id) {
+      dispatch(actionCreators.getDetail(id))
+    }
+  }
+}
+export default connect(mapState, mapDispatch)(Detail)
