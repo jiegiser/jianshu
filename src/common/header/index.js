@@ -3,13 +3,14 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-05 08:25:00
+ * @LastEditTime: 2020-03-07 16:01:31
  */
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
 import { Link } from 'react-router-dom'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import {
   HeaderWrapper,
   Logo,
@@ -71,7 +72,7 @@ class Header extends Component {
     }
   }
   render() {
-    const { focused, handleInputFocus, handleInputBlur, list } = this.props
+    const { focused, handleInputFocus, handleInputBlur, list, login, logout } = this.props
     return (
       <HeaderWrapper>
         <Link to="/">
@@ -80,7 +81,11 @@ class Header extends Component {
         <Nav>
           <NavItem className='left active'>首页</NavItem>
           <NavItem className='left'>下载APP</NavItem>
-          <NavItem className='right'>登录</NavItem>
+          {
+            login ?
+              <NavItem className='right' onClick={ logout }>退出</NavItem>:
+              <Link to='/login'><NavItem className='right'>登录</NavItem></Link>
+          }
           <NavItem className='right'>
             <span className="iconfont">&#xe636;</span>
            </NavItem>
@@ -117,8 +122,9 @@ class Header extends Component {
      list: state.getIn(['header', 'list']),
      page: state.getIn(['header', 'page']),
      mouseIn: state.getIn(['header', 'mouseIn']),
-     totalPage: state.getIn(['header', 'totalPage'])
-    //  focused: state.get('header').get('focused')
+     totalPage: state.getIn(['header', 'totalPage']),
+     //  focused: state.get('header').get('focused')
+     login: state.getIn(['login', 'login'])
    }
  }
  const mapDispatchToProps = dispatch => {
@@ -146,6 +152,9 @@ class Header extends Component {
       } else {
         dispatch(actionCreators.changePage(1))
       }
+    },
+    logout() {
+      dispatch(loginActionCreators.logout())
     }
    }
  }

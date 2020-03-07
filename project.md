@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-06 08:34:03
+ * @LastEditTime: 2020-03-07 16:05:44
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -427,6 +427,28 @@ this.props.match.params.id
 ```js
 this.props.location.search
 ```
+
+路由的跳转：用Redirect这个组件进行路由的跳转
+```js
+import { Redirect } from 'react-router-dom'
+  render() {
+    const { loginStatus } = this.props
+    if (!loginStatus) {
+      return (
+        <LoginWrapper>
+          <LoginBox>
+            <Input placeholder="账号" ref={input => { this.account = input }}/>
+            <Input placeholder="密码" type="password" ref={input => { this.password = input }}/>
+            <Button onClick={ () => { this.props.login(this.account, this.password) }}>登录</Button>
+          </LoginBox>
+        </LoginWrapper>
+      )
+    } else {
+      return <Redirect to="/" />
+    }
+  }
+```
+在项目中，不同的组件如果是要用不同的store里面的数据，需要引入对应的store里面的actioncreators。进行修改store里面的数据。
 
 ## 项目中性能的优化
 - 使用无状态组件
