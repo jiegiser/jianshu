@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:39:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-07 16:01:31
+ * @LastEditTime: 2020-03-07 16:21:16
  */
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
@@ -106,10 +106,12 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <Addition>
-          <Button className='writting'>
+          <Link to="/write">
+            <Button className='writting'>
             <span className="iconfont">&#xe615;</span>
             写文章
-           </Button>
+            </Button>
+          </Link>
           <Button className='reg'>注册</Button>
         </Addition>
       </HeaderWrapper>

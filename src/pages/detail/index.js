@@ -3,11 +3,12 @@
  * @Author: jiegiser
  * @Date: 2020-03-04 07:57:25
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-06 08:38:53
+ * @LastEditTime: 2020-03-07 16:43:07
  */
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { actionCreators } from './store/index'
+import { withRouter } from 'react-router-dom'
 import {
   DetailWrapper,
   Header,
@@ -41,4 +42,5 @@ const mapDispatch = dispatch => {
     }
   }
 }
-export default connect(mapState, mapDispatch)(Detail)
+// withRouter包裹就是让包裹的组件有能力去获取router里面的内容
+export default connect(mapState, mapDispatch)(withRouter(Detail))

@@ -3,7 +3,7 @@
  * @Author: jiegiser
  * @Date: 2020-03-02 08:00:59
  * @LastEditors: jiegiser
- * @LastEditTime: 2020-03-07 16:05:44
+ * @LastEditTime: 2020-03-07 16:49:33
  -->
 ## styled-components
 使用styled-components去管理项目中的样式。
@@ -459,4 +459,50 @@ import React, { PureComponent } from 'react'
 // PureComponent自己做了shouldComponentUpdate的优化，提高性能
 class Home extends PureComponent {}
 ```
+- 使用异步组件进行加载
 
+首先进行安装：yarn add react-loadable, 使用：
+首先需要创建一个js组件，注意这里加载的./index.js是需要变成异步加载的组件的路径
+```js
+// loadable.js
+import React from 'react'
+import Loadable from 'react-loadable';
+
+const LoadableComponent = Loadable({
+  // 下面是异步加载的组件
+  loader: () => import('./index.js'),
+  // loading，加载时空白显示
+  loading() {
+    return <div>正在加载</div>
+  }
+});
+export default () => <LoadableComponent/>
+// export default class App extends React.Component {
+//   render() {
+//     return <LoadableComponent/>
+//   }
+// }
+```
+然后在app.js根组件中，修改异步加载的组件路径为我们修改的这个组件：
+```js
+import Detail from './pages/detail/loadable'
+<Route path = '/detail/:id' exact component = { Detail }></Route>
+```
+然后组件内部有接收路由参数的，所以需要修改detail组件：主要是使用withRouter这个组件来包裹我们的组件，
+withRouter包裹就是让包裹的组件有能力去获取router里面的内容
+```js
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { actionCreators } from './store/index'
+import { withRouter } from 'react-router-dom'
+class Detail extends PureComponent {
+  render() {
+    return (
+      <DetailWrapper>
+      </DetailWrapper>
+    )
+  }
+}
+// withRouter包裹就是让包裹的组件有能力去获取router里面的内容
+export default connect(mapState, mapDispatch)(withRouter(Detail))
+```
